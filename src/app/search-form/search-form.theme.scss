@@ -1,0 +1,13 @@
+@mixin search-form-theme($theme) {
+  .search-from {
+    $primary: map-get($theme, primary);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    .search-field {
+      border: 1px solid mat-color($primary);
+      background-color: mat-color($background, card);
+      color: mat-color($foreground, text);
+    }
+  }
+}

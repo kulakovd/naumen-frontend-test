@@ -1,0 +1,8 @@
+<button
+  class="page-picker-button"
+  mat-flat-button
+  *ngFor="let page of pages()"
+  [class.selected]="page == _value"
+  (click)="selectPage(page)">
+  {{ page }}
+</button>

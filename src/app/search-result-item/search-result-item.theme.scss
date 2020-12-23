@@ -1,0 +1,23 @@
+@mixin search-result-item-theme($theme) {
+  .search-result-item {
+    $primary: map-get($theme, primary);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    background-color: mat-color($background, card);
+    color: mat-color($foreground, text);
+    border: 1px solid #999;
+
+    &:hover {
+      background-color: mat-color($background, hover);
+    }
+
+    h1 {
+      color: mat-color($primary);
+    }
+
+    span {
+      color: mat-color($foreground, secondary-text);
+    }
+  }
+}

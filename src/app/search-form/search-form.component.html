@@ -1,0 +1,38 @@
+<form (submit)="submit()">
+  <mat-form-field
+    class="search-field">
+    <input
+      matInput
+      [matAutocomplete]="search"
+      autocomplete="off"
+      type="text"
+      name="search"
+      [formControl]="searchControl"
+      placeholder="поиск по Википедии">
+    <!--<button 
+      mat-button 
+      *ngIf="searchText" 
+      matSuffix 
+      mat-icon-button 
+      aria-label="Clear"   
+      (click)="clearSearch()">
+      <mat-icon>close</mat-icon>
+    </button>-->
+
+    <mat-autocomplete #search="matAutocomplete">
+      <mat-option 
+        *ngFor="let option of autocompliteOptions | async" 
+        [value]="option"
+        [innerHtml]="yana(option, searchText)">
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button 
+    mat-flat-button
+    color="primary"
+    class="search-button" 
+    type="submit" 
+    value="искать">
+    искать
+  </button>
+</form>

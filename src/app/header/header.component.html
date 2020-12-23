@@ -1,0 +1,18 @@
+<header>
+  <!--<mat-form-field>
+    <mat-label>тема</mat-label>
+    <mat-select
+      [formControl]="themeControl">
+      <mat-option 
+        *ngFor="let theme of themes"
+        [value]="theme">
+        {{ theme.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>-->
+
+  <app-theme-piker
+    [formControl]="themeControl"
+    [themes]="themes">
+  </app-theme-piker>
+</header>

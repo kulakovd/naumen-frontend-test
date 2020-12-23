@@ -1,0 +1,47 @@
+.item {
+  display: flex;
+  align-items: stretch;
+  margin-top: 20px;
+
+  overflow: hidden;
+  border-radius: 5px;
+
+  font-family: sans-serif;
+  text-decoration: none;
+
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.content {
+  padding: 30px;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.item:hover h1 {
+  text-decoration: underline;
+}
+
+.image {
+  width: 30%;
+  background: no-repeat center center / cover;
+  position: relative;
+}
+
+@media (max-width: 500px) {
+  .item {
+    flex-direction: column-reverse;
+  }
+
+  .image {
+    height: 200px;
+    width: auto;
+    background-position-y: top;
+  }
+}

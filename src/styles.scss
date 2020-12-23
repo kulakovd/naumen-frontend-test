@@ -1,0 +1,11 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import './themes.scss';
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  transition: 0.4s;
+}

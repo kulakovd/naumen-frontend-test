@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #999;
+}
+
+.page-picker-button {
+  flex-grow: 1;
+  border-radius: 0;
+  padding: 0;
+  min-width: 36px;
+}

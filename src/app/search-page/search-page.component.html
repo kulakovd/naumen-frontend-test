@@ -1,0 +1,56 @@
+<div class="search-page">
+	<app-search-form 
+    [class.initial]="searchText == undefined || searchText === ''"
+    [searchText]="searchText || ''"
+    (find)="updateRoute($event)">
+  </app-search-form>
+
+  <div 
+    class="unnamed_class_very_sorry"
+    [class.visible]="searchResults.find">
+    
+    <div class="aggregated">
+
+      <span>Найдено статей: {{ searchResults.pagesCount }}</span>
+      <span>Средняя длина статьи: {{ searchResults.averageLength }}</span>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Сортировать по</mat-label>
+      <mat-select
+        [formControl]="sortingControl">
+        <mat-option 
+          *ngFor="let sortingMethod of sorting"
+          [value]="sortingMethod">
+          {{ sortingMethod.text }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+  
+  <app-page-picker
+    [class.visible]="searchResults.find"
+    [(ngModel)]="selectedPage"
+    [pagesCount]="resultPagesCount"></app-page-picker>
+  
+  <app-search-result-item 
+    *ngFor="let page of searchResults.pages.slice((selectedPage-1)*RESULTS_PER_PAGE, (selectedPage-1)*RESULTS_PER_PAGE + RESULTS_PER_PAGE)" 
+    [page]="page">
+  </app-search-result-item>
+
+  <app-page-picker
+    [class.visible]="searchResults.find"
+    [(ngModel)]="selectedPage"
+    [pagesCount]="resultPagesCount"></app-page-picker>
+
+  <div class="not-found"
+    [class.visible]="notFound">
+    По запросу "{{ searchText }}" ничего не найдено
+  </div>
+  <div
+    class="loader"
+    [class.visible]="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>

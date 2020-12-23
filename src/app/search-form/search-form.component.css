@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  border-radius: 5px;
+}
+
+form {
+  display: flex;
+  border-radius: 5px;
+}
+
+input {
+  font-size: 1.2em;
+}
+
+.search-field {
+  flex-basis: 85%;
+  width: 0;
+  padding: 0.7em 1.5em 0;
+  border-radius: 5px 0 0 5px;
+  border: none;
+}
+
+.search-button {
+  flex-basis: 15%;
+  min-width: auto;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  border: none;
+}
