@@ -1,6 +1,5 @@
 import { Component, Input, HostBinding, forwardRef, ElementRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {Theme} from "../app.component";
 
 @Component({
   selector: 'app-page-picker',

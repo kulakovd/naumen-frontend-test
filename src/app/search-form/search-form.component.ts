@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SearchAutocompliteService } from '../search-autocomplite.service';
 
-
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',

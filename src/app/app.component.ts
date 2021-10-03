@@ -1,5 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
-import { OverlayContainer } from '@angular/cdk/overlay';
+import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms'
 
 export interface Theme {

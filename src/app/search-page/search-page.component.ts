@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { WikipediaSearchService, WikipediaSearchResults } from '../wikipedia-search.service';
 
 interface SortingMethod {
