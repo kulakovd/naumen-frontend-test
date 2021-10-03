@@ -29,16 +29,16 @@ interface RawAdditionalInfo {
 }
 
 export class WikipediaPage {
-  public id: number;
-  public touched: string;
-  public desctiprion: string;
-  public length: number;
-  public imageSrc: string;
+  public id: number = 0;
+  public touched: string = '';
+  public desctiprion: string = '';
+  public length: number = 0;
+  public imageSrc?: string;
 
   constructor(
-    public order: number, 
-    public title: string, 
-    public shortContent: string, 
+    public order: number,
+    public title: string,
+    public shortContent: string,
     public link: string
   ) {}
 }
@@ -73,11 +73,11 @@ export class WikipediaSearchService {
   constructor(private http: HttpClient) { }
 
   // максимальное кол-во резулатов поиска
-  static readonly MAX_SEARCH_RESULTS_COUNT = 500; 
+  static readonly MAX_SEARCH_RESULTS_COUNT = 500;
 
   // максимальное кол-во заколовков, для которых можно
   // загрузить дополнительную информацию в одном запросе
-  static readonly MAX_TITLES_IN_QUERY = 10; 
+  static readonly MAX_TITLES_IN_QUERY = 10;
 
   private static apiUrl: string = 'https://ru.wikipedia.org/w/api.php';
 
@@ -93,7 +93,7 @@ export class WikipediaSearchService {
     params.set('format', 'json');
     params.set('utf8', '1');
     params.set('callback', 'w_c');
-    
+
     return url.toString();
   }
 
@@ -109,7 +109,7 @@ export class WikipediaSearchService {
     params.set('format', 'json');
     params.set('utf8', '1');
     params.set('callback', 'w_c');
-    
+
     return url.toString();
   };
 
