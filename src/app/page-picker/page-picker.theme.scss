@@ -1,9 +1,10 @@
+@use '~@angular/material' as mat;
 @mixin page-picker-theme($theme) {
   $primary: map-get($theme, primary);
   $background: map-get($theme, background);
   .page-picker-button.selected {
-    background-color: mat-color($background, hover);
-    color: mat-color($primary);
+    background-color: mat.get-color-from-palette($background, hover);
+    color: mat.get-color-from-palette($primary);
     font-weight: 900;
   }
 }

@@ -1,20 +1,21 @@
+@use '~@angular/material' as mat;
 @import '~@angular/material/theming';
 @import './app/search-form/search-form.theme.scss';
 @import './app/search-result-item/search-result-item.theme.scss';
 @import './app/page-picker/page-picker.theme.scss';
 
 @mixin make-theme($theme) {
-  @include angular-material-theme($theme);
+  @include mat.all-component-themes($theme);
 
   // body styles
   $primary: map-get($theme, primary);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
-  background-color: mat-color($background, background);
-  color: mat-color($foreground, text);
+  background-color: mat.get-color-from-palette($background, background);
+  color: mat.get-color-from-palette($foreground, text);
 
   &.primary-background {
-    background-color: mat-color($primary);
+    background-color: mat.get-color-from-palette($primary);
   }
 
   // components styles
@@ -23,39 +24,39 @@
   @include page-picker-theme($theme);
 }
 
-@include mat-core();
+@include mat.core();
 
 .indigo-light-theme {
-  $theme: mat-light-theme(
-    mat-palette($mat-indigo),
-    mat-palette($mat-purple)
+  $theme: mat.define-light-theme(
+    mat.define-palette(mat.$indigo-palette),
+    mat.define-palette(mat.$purple-palette)
   );
 
   @include make-theme($theme);
 }
 
 .green-light-theme {
-  $theme: mat-light-theme(
-    mat-palette($mat-green, 800),
-    mat-palette($mat-orange)
+  $theme: mat.define-light-theme(
+    mat.define-palette(mat.$green-palette, 800),
+    mat.define-palette(mat.$orange-palette)
   );
 
   @include make-theme($theme);
 }
 
 .pink-dark-theme {
-  $theme: mat-dark-theme(
-    mat-palette($mat-pink),
-    mat-palette($mat-purple)
+  $theme: mat.define-dark-theme(
+    mat.define-palette(mat.$pink-palette),
+    mat.define-palette(mat.$purple-palette)
   );
 
   @include make-theme($theme);
 }
 
 .orange-dark-theme {
-  $theme: mat-dark-theme(
-    mat-palette($mat-orange, 800),
-    mat-palette($mat-light-blue)
+  $theme: mat.define-dark-theme(
+    mat.define-palette(mat.$orange-palette, 800),
+    mat.define-palette(mat.$light-blue-palette)
   );
 
   @include make-theme($theme);
