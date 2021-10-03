@@ -30,7 +30,7 @@ export class SearchPageComponent implements OnInit {
     {
       text: 'по релевантности',
       sort(results: WikipediaSearchResults) {
-        results.pages.sort((a, b) => 
+        results.pages.sort((a, b) =>
           a.order - b.order
         );
 
@@ -39,7 +39,7 @@ export class SearchPageComponent implements OnInit {
     }, {
       text: 'по алфавиту (А-Я)',
       sort(results: WikipediaSearchResults) {
-        results.pages.sort((a, b) => 
+        results.pages.sort((a, b) =>
           a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1
         );
 
@@ -48,7 +48,7 @@ export class SearchPageComponent implements OnInit {
     }, {
       text: 'по алфавиту (Я-А)',
       sort(results: WikipediaSearchResults) {
-        results.pages.sort((a, b) => 
+        results.pages.sort((a, b) =>
           a.title.toLowerCase() < b.title.toLowerCase() ? 1 : -1
         );
 
@@ -57,7 +57,7 @@ export class SearchPageComponent implements OnInit {
     }, {
       text: 'от новых к старым',
       sort(results: WikipediaSearchResults) {
-        results.pages.sort((a, b) => 
+        results.pages.sort((a, b) =>
           new Date(b.touched).valueOf() - new Date(a.touched).valueOf()
         );
 
@@ -66,7 +66,7 @@ export class SearchPageComponent implements OnInit {
     }, {
       text: 'от старых к новым',
       sort(results: WikipediaSearchResults) {
-        results.pages.sort((a, b) => 
+        results.pages.sort((a, b) =>
           new Date(a.touched).valueOf() - new Date(b.touched).valueOf()
         );
 
@@ -89,7 +89,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   sortResults(sorting: SortingMethod) {
@@ -108,6 +108,8 @@ export class SearchPageComponent implements OnInit {
   }
 
   updateResults(searchText: string): void {
+    if (searchText == null) return;
+
     this.notFound = false;
     this.loading = true;
     this.searchText = searchText;
