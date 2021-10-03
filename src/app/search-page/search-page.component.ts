@@ -5,7 +5,7 @@ import { WikipediaSearchService, WikipediaSearchResults } from '../wikipedia-sea
 
 interface SortingMethod {
   text: string;
-  sort(WikipediaSearchResults): WikipediaSearchResults;
+  sort(results: WikipediaSearchResults): WikipediaSearchResults;
 }
 
 @Component({
@@ -122,7 +122,7 @@ export class SearchPageComponent implements OnInit {
         this.resultPagesCount = Math.ceil(data.pagesCount / this.RESULTS_PER_PAGE);
 
         this.loading = false;
-        this.notFound = this.searchText && this.searchText !== '' && !data.find;
+        this.notFound = this.searchText != null && this.searchText !== '' && !data.find;
 
         this.sortResults(this.sortingControl.value);
       });

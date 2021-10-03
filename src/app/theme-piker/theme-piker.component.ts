@@ -19,15 +19,16 @@ import { Theme } from '../app.component';
 })
 export class ThemePikerComponent implements ControlValueAccessor {
 
-  private _onChange;
-  private _onTouched;
+  _onChange?: (value: Theme) => void;
+  _onTouched?: () => void;
 
-  @Input() themes: Theme[];
-  private selected: Theme; 
+  @Input() themes: Theme[] = [];
+  selected?: Theme;
 
   selectTheme(value: Theme) {
     this.selected = value;
-    this._onChange(value);
+    if (this._onChange)
+      this._onChange(value);
   }
 
   writeValue(value: Theme) {
@@ -38,11 +39,11 @@ export class ThemePikerComponent implements ControlValueAccessor {
     }
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: (value: Theme) => void) {
     this._onChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: () => void) {
     this._onTouched = fn;
   }
 }

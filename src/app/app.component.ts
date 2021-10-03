@@ -37,7 +37,7 @@ export class AppComponent  {
   ];
 
   themeControl: FormControl = new FormControl();
-  selectedThemeId: string;
+  selectedThemeId: string = '';
 
   constructor() {
     this.themeControl.valueChanges.subscribe((theme: Theme) => {
@@ -46,13 +46,13 @@ export class AppComponent  {
     });
 
     window.addEventListener('storage', (e) => {
-      if (e.key !== THEME_KEY) {
+      if (e.key !== THEME_KEY || e.newValue == null || e.storageArea !== localStorage) {
         return;
       }
-      
+
       let theme = this.getThemeById(e.newValue);
 
-      this.setTheme(theme);
+      this.setTheme(theme || this.themes[0]);
       this.themeControl.setValue(theme, { emitEvent: false });
     });
 
@@ -60,17 +60,17 @@ export class AppComponent  {
   }
 
   loadThemeFromLocalStorage() {
-    let themeId = localStorage.getItem(THEME_KEY);
+    const themeId = localStorage.getItem(THEME_KEY);
     let theme = this.getThemeById(themeId);
 
     if (!theme) {
       theme = this.themes[0];
     }
-    
+
     this.themeControl.setValue(theme);
   }
 
-  getThemeById(themeId: string): Theme {
+  getThemeById(themeId: string | null): Theme | null {
     if (!themeId) {
       return null;
     }
@@ -90,7 +90,7 @@ export class AppComponent  {
 
     if (this.selectedThemeId) {
       bodyClassList.remove(this.selectedThemeId)
-    };
+    }
 
     bodyClassList.add(theme.id);
     this.selectedThemeId = theme.id;

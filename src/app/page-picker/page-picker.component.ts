@@ -1,5 +1,6 @@
 import { Component, Input, HostBinding, forwardRef, ElementRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {Theme} from "../app.component";
 
 @Component({
   selector: 'app-page-picker',
@@ -17,25 +18,26 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class PagePickerComponent implements ControlValueAccessor {
-  constructor(private elRef: ElementRef) {
+  constructor(private elRef: ElementRef<HTMLElement>) {
     this._host = elRef.nativeElement;
   }
 
-  @HostBinding('scrollLeft') scroll: number;
+  @HostBinding('scrollLeft') scroll?: number;
 
-  @Input() pagesCount: number;
-  private _value;
-  private _host;
+  @Input() pagesCount: number = 0;
+  _value?: number;
+  private readonly _host: HTMLElement | null;
 
-  private _onChange;
-  private _onTouched;
+  _onChange?: (value: number) => void;
+  _onTouched?: () => void;
 
-  private pages(): number[] {
+  pages(): number[] {
     return Array(this.pagesCount).fill(0).map((e, i) => i + 1);
   };
 
   private countScroll(value: number): number {
-    const hostWidth = this._host.clientWidth;
+    if (this._host == null) return 0;
+    const hostWidth = this._host?.clientWidth;
 
     const MIN_SCROLL = 0;
     const MAX_SCROLL = this._host.scrollWidth - this._host.clientWidth;
@@ -53,17 +55,18 @@ export class PagePickerComponent implements ControlValueAccessor {
   }
 
   private scrollTo(value: number) {
-    this._host.scrollTo({
+    this._host?.scrollTo({
       left: this.countScroll(value),
       behavior: 'smooth'
     } as ScrollOptions)
   }
 
-  private selectPage(value: number) {
+  selectPage(value: number) {
     this.scrollTo(value);
 
     this._value = value;
-    this._onChange(value);
+    if (this._onChange)
+      this._onChange(value);
   }
 
   writeValue(value: number) {
@@ -74,12 +77,11 @@ export class PagePickerComponent implements ControlValueAccessor {
     }
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: (value: number) => void) {
     this._onChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: () => void) {
     this._onTouched = fn;
   }
-
 }

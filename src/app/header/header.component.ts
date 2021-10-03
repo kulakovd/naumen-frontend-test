@@ -9,12 +9,11 @@ import { Theme } from '../app.component';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() themeControl: FormControl;
-  @Input() themes: Theme[];
+  @Input() themeControl?: FormControl;
+  @Input() themes?: Theme[];
 
   constructor() { }
 
   ngOnInit() {
   }
-
 }
